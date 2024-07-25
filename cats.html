@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cats Page</title>
+    <script>
+        function generateImage() {
+            fetch('https://api.thecatapi.com/v1/images/search')
+                .then(response => response.json())
+                .then(data => {
+                    const imageUrl = data[0].url;
+                    const imageElement = document.getElementById('catImage');
+                    imageElement.src = imageUrl;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Cats Page</h1>
+    <button onclick="generateImage()">Generate Now</button>
+    <br>
+    <img id="catImage" src="" alt="Generated Cat Image">
+</body>
+</html>

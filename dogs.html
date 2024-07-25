@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Image Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Dog Image Generator</h1>
+    
+    <div id="payment-error" style="display: none; color: red;">Error: No payment detected.</div>
+    
+    <button id="generate-button" disabled>Generate Dog Image</button>
+    
+    <script>
+        // Stripe payment processing
+        var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+        var elements = stripe.elements();
+        // Add your Stripe payment form code here
+        
+        // Enable generate button if payment is successful
+        function enableGenerateButton() {
+            $('#generate-button').prop('disabled', false);
+        }
+        
+        // Disable generate button if payment fails
+        function disableGenerateButton() {
+            $('#generate-button').prop('disabled', true);
+        }
+        
+        // Check if payment is successful
+        function checkPaymentStatus() {
+            // Add your payment status check code here
+            var paymentSuccessful = true; // Replace with your actual payment status check
+            
+            if (paymentSuccessful) {
+                enableGenerateButton();
+            } else {
+                disableGenerateButton();
+                $('#payment-error').show();
+            }
+        }
+        
+        // Call checkPaymentStatus function on page load
+        $(document).ready(function() {
+            checkPaymentStatus();
+        });
+        
+        // Dog image generation
+        $('#generate-button').click(function() {
+            // Add your Dog CEO API code here to generate the image
+            if ($('#generate-button').prop('disabled')) {
+                window.location.href = 'https://stripe.com';
+            } else {
+                $.ajax({
+                    url: 'https://dog.ceo/api/breeds/image/random',
+                    method: 'GET',
+                    success: function(response) {
+                        // Process the response and display the dog image
+                        var imageUrl = response.message;
+                        // Add your code here to display the dog image on the page
+                    },
+                    error: function() {
+                        // Handle the error case
+                        console.log('Error occurred while fetching dog image');
+                    }
+                });
+            }
+            $.ajax({
+                url: 'https://dog.ceo/api/breeds/image/random',
+                method: 'GET',
+                success: function(response) {
+                    // Process the response and display the dog image
+                    var imageUrl = response.message;
+                    // Add your code here to display the dog image on the page
+                },
+                error: function() {
+                    // Handle the error case
+                    console.log('Error occurred while fetching dog image');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

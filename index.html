@@ -1,0 +1,35 @@
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-color: blue;
+            color: white; /* Optional: to make the text readable on a blue background */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <button style="background-color: green; color: white;">Cat Generator</button>
+    <button style="background-color: brown; color: white;" onclick="window.location.href = 'dogs.html';">Dog Generator</button>
+    <script>
+        document.querySelector('button').addEventListener('click', function() {
+            window.location.href = 'cats.html';
+        });
+    </script>
+</body>
+</html>
